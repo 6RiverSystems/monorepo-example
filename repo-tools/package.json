@@ -33,6 +33,7 @@
     "jsmin": "1.0.1",
     "merge2": "1.2.3",
     "typescript": "3.8.3",
-    "pretty-quick": "2.0.1"
+    "pretty-quick": "2.0.1",
+    "eslint-config-prettier": "6.10.1"
   }
 }
