@@ -13,9 +13,9 @@
     "clean": "rm -rf dist generated-interfaces .rush/temp/package-deps*.json",
     "test": "npm-run-all lint build test-ci",
     "test-ci": "npm-run-all test:examples",
-    "lint": "npm-run-all lint:eslint lint:speccy",
+    "lint": "npm-run-all lint:eslint lint:spectral",
     "lint:eslint": "../../repo-tools/scripts/lint.sh",
-    "lint:speccy": "speccy lint template-openapi.yaml",
+    "lint:spectral": "spectral lint template-openapi.yaml",
     "test:examples": "node dist/utils/validateExamplesAgainstSchemas.js",
     "unit": "true",
     "coverage": "true",
@@ -39,6 +39,9 @@
     "dist/src",
     "template-openapi.yaml"
   ],
+  "dependencies": {
+    "@sixriver/standard-api":"2.13.0"
+  },
   "peerDependencies": {
     "@sixriver/oas-support": "^4.0.0",
     "ajv": "6.10.0"
@@ -62,8 +65,8 @@
     "npm-run-all": "4.1.5",
     "openapi-schema-to-json-schema": "2.2.0",
     "source-map-support": "0.5.16",
-    "speccy": "0.9.0",
     "swagger-parser": "6.0.5",
-    "typescript": "3.9.7"
+    "typescript": "3.9.7",
+    "@stoplight/spectral": "5.4.0"
   }
 }

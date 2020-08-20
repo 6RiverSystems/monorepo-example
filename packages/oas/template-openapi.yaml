@@ -35,15 +35,15 @@ paths:
           content:
             application/json:
               schema:
-                $ref: 'https://frontend-apps.6river.org/api/v2.x.x/openapi.yaml#/components/schemas/BaseWithId'
+                $ref: 'https://frontend-apps.6river.org/api/v2.14.0-latest.16/openapi.yaml#/components/schemas/BaseWithId'
         400:
-          $ref: 'https://frontend-apps.6river.org/api/v2.x.x/openapi.yaml#/components/responses/BadRequest'
+          $ref: 'https://frontend-apps.6river.org/api/v2.14.0-latest.16/openapi.yaml#/components/responses/BadRequest'
         403:
-          $ref: 'https://frontend-apps.6river.org/api/v2.x.x/openapi.yaml#/components/responses/Unauthorized'
+          $ref: 'https://frontend-apps.6river.org/api/v2.14.0-latest.16/openapi.yaml#/components/responses/Unauthorized'
         422:
-          $ref: 'https://frontend-apps.6river.org/api/v2.x.x/openapi.yaml#/components/responses/UnprocessableEntity'
+          $ref: 'https://frontend-apps.6river.org/api/v2.14.0-latest.16/openapi.yaml#/components/responses/UnprocessableEntity'
         500:
-          $ref: 'https://frontend-apps.6river.org/api/v2.x.x/openapi.yaml#/components/responses/InternalServerError'
+          $ref: 'https://frontend-apps.6river.org/api/v2.14.0-latest.16/openapi.yaml#/components/responses/InternalServerError'
 
 components:
   schemas:
