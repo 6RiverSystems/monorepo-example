@@ -1,0 +1,19 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema#",
+	"$id": "https://6river.com/schema/mapStack/cell.json",
+	"title": "cell",
+	"type": "object",
+	"additionalProperties": false,
+	"properties": {
+		"start": {
+			"type": "string"
+		},
+		"end": {
+			"type": "string"
+		},
+		"cost": {
+			"type": "number"
+		}
+	},
+	"required": ["start", "end", "cost"]
+}

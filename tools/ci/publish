@@ -1,0 +1,48 @@
+#!/usr/bin/env bash
+
+# Publish all publishable packages in the repository. Must be run from project root directory.
+
+set -euo pipefail
+
+readonly DIR="$(dirname "$(realpath "$0")")"
+readonly PROJECT_ROOT="$DIR"/../..
+
+source "$DIR"/common.bash
+
+is_package_publishable() {
+	[ -f package.json ] && ! jq --exit-status '.private == true' package.json &> /dev/null
+}
+
+main() {
+	local version
+	if ! version="$(get_version)"; then
+		echo 'error: could not find version'
+		return 1
+	fi
+
+	echo "using version '$version'"
+
+	assert_jq_installed
+	assert_ci_scripts_checked_out
+
+	if ! [ -d dist ] || ! [ -d dist/libs ]; then
+		echo 'warning: could not find directory ./dist/libs, did any projects get built?'
+		return
+	fi
+
+	for package in dist/libs/*; do
+		echo "checking package '$package'..."
+		if [ -d "$package" ] && pushd "$package" > /dev/null && is_package_publishable; then
+			echo "  setting version..."
+			set_version "$version"
+
+			echo "  publishing..."
+			if ! "$PROJECT_ROOT"/ci_scripts/ci_tool.sh --npm_publish; then
+				echo "  warning: publish failed, version may already be published"
+			fi
+			popd &> /dev/null
+		fi
+	done
+}
+
+main

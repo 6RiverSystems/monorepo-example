@@ -1,0 +1,7 @@
+<section [formGroup]="form">
+	<map-core-area-position-editor [form]="form" [position]="feature.getBounds()" [readOnly]="readOnly">
+	</map-core-area-position-editor>
+	<mat-form-field>
+		<input matInput type="number" formControlName="cost" placeholder="Cost">
+	</mat-form-field>
+</section>

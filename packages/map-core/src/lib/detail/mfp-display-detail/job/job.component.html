@@ -1,0 +1,28 @@
+<mat-expansion-panel
+	[expanded]="expanded"
+	(opened)="onOpened()"
+	(closed)="onClosed()">
+	<mat-expansion-panel-header>
+		<mat-panel-title>Job {{ index + 1 }}</mat-panel-title>
+		<mat-panel-description>
+			<span *ngIf="job.getCompletedLines().length > 0; else justQuantity">
+				picked {{ job.getDoneQuantity() }} of {{ job.getQuantity() }}
+			</span>
+			<ng-template #justQuantity>
+				<span *ngIf="job.getQuantity()">
+					{{ job.getQuantity() }} to pick
+				</span>
+			</ng-template>
+		</mat-panel-description>
+		<ng-template matExpansionPanelContent>
+			<mat-list>
+				<mat-list-item class="asset" *ngFor="let line of job.lines">
+					<ng-container matLine *ngIf="job.getAssetType(line.productTypeId) as assetType">
+						<span matLine [attr.title]="assetType.name">{{ assetType.name }}</span>
+						<span matLine [attr.title]="assetType.description">{{ assetType.description }}</span>
+					</ng-container>
+				</mat-list-item>
+			</mat-list>
+		</ng-template>
+	</mat-expansion-panel-header>
+</mat-expansion-panel>

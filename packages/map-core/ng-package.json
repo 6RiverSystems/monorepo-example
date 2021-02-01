@@ -1,0 +1,12 @@
+{
+	"$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
+	"dest": "../../dist/libs/map-core",
+	"lib": {
+		"entryFile": "src/index.ts",
+		"umdModuleIds": {
+			"@sixriver/map-io": "sixriver.map-io",
+			"@sixriver/map-validator": "sixriver.map-validator",
+			"@sixriver/map-controller": "sixriver.map-controller"
+		}
+	}
+}

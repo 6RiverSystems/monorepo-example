@@ -1,0 +1,70 @@
+#!/usr/bin/env bash
+
+# Get the base SHA for the current build. For pull requests, that will be the base branch of the current pull request.
+# For `master` builds, that will be the commit SHA of the prior merge into `master`.
+
+set -euo pipefail
+
+readonly DIR="$(dirname "$(realpath "$0")")"
+
+source "$DIR"/common.bash
+
+# Include remote name because the branch won't be checked out locally in CI
+readonly default='origin/master'
+base=''
+
+# Log an error, fall back to a sensible default value, and exit
+# $1: error message
+error_exit() {
+	log "error: ${1:-} (falling back to 'master')"
+	echo "$default"
+	exit
+}
+
+if [ -z "${CIRCLE_BRANCH:-}" ]; then
+	error_exit 'variable CIRCLE_BRANCH must be set'
+fi
+
+if [ -z "${GITHUB_TOKEN:-}" ]; then
+	error_exit 'variable GITHUB_TOKEN must be set'
+fi
+
+if ! command -v jq > /dev/null; then
+	error_exit 'jq must be installed'
+fi
+
+log "branch is '$CIRCLE_BRANCH'"
+
+# On `master`, we need to figure out the previous commit
+if [ "$CIRCLE_BRANCH" = 'master' ]; then
+	# Log the SHA of the prior merge commit that was merged into this branch, make sure command succeeds and has output
+	if sha="$(git log --merges --first-parent --max-count 1 --skip 1 --pretty='format:%H')" && [ -n "$sha" ]; then
+		log "successfully got SHA of most recent merge commit: $sha"
+		base="$sha"
+	else
+		log 'falling back to an arbitrary commit from a while ago'
+		# Fall back to an arbitrary commit from a while ago (no error handling because this should not ever fail)
+		base="$(git log --max-count 1 --skip 50 --pretty='format:%H')"
+	fi
+else
+	# On other branches, we need to figure out the pull request base if there is one, otherwise fall back to `master`
+	url="https://api.github.com/repos/6RiverSystems/mfp-ui/pulls?head=6RiverSystems:$CIRCLE_BRANCH"
+	log "requesting pull request from URL '$url'"
+	if ! pull_request="$(curl --silent --header "Authorization: token $GITHUB_TOKEN" "$url")"; then
+		error_exit 'failed to get pull request'
+	fi
+
+	log "got pull request:"
+	echo "$pull_request" | >&2 jq
+
+	if ! pr_base_branch="$(echo "$pull_request" | jq --raw-output --exit-status 'first | .base.ref')"; then
+		error_exit 'failed to parse pull request'
+	fi
+
+	log "successfully got pull request base branch: $pr_base_branch"
+
+	# Include remote name because the branch won't be checked out locally in CI
+	base=origin/"$pr_base_branch"
+fi
+
+echo "$base"

@@ -1,0 +1,48 @@
+:host {
+    display: flex;
+    justify-content: center;
+}
+
+.workflow-point-config-form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: space-around;
+
+    mat-form-field {
+        margin-top: 1rem;
+        margin-right: 0.5rem;
+        display: block;
+    }
+
+    .confirmation-button {
+        margin-top: 2rem;
+    }
+    
+    .confirmation-disclaimer {
+        margin-top: 2rem;
+    
+        .disclaimer-buttons {
+            margin-top: 1rem;
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+            justify-content: space-between;
+            margin-top: 1rem;
+        
+            button {
+                width: 40%;
+            }
+        }
+    }
+}
+
+.uploading-container {
+    text-align: center;
+    srs-spinner {
+        display: inline-block;
+    }
+    .uploading-text {
+        margin-bottom: 2rem;
+    }
+}

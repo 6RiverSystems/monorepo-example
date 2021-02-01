@@ -1,0 +1,8 @@
+{
+	"name": "@sixriver/map-inspector",
+	"version": "0.0.0-development",
+	"description": "Library for inspecting map features.",
+	"peerDependencies": {
+		"@sixriver/map-io": "latest"
+	}
+}

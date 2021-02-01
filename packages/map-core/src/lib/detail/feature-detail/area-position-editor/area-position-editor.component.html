@@ -1,0 +1,22 @@
+<section [formGroup]="form">
+	<section formGroupName="position">
+		<section formGroupName="southWest">
+			<h3 class="mat-h3">South West</h3>
+			<mat-form-field>
+				<input matInput formControlName="lng" placeholder="X">
+			</mat-form-field>
+			<mat-form-field>
+				<input matInput formControlName="lat" placeholder="Y">
+			</mat-form-field>
+		</section>
+		<section formGroupName="northEast">
+			<h3 class="mat-h3">North East</h3>
+			<mat-form-field>
+				<input matInput formControlName="lng" placeholder="X">
+			</mat-form-field>
+			<mat-form-field>
+				<input matInput formControlName="lat" placeholder="Y">
+			</mat-form-field>
+		</section>
+	</section>
+</section>

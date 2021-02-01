@@ -1,0 +1,29 @@
+:host {
+	flex-grow: 1;
+	color: #fff;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+}
+
+.content-right {
+	display: flex;
+	align-items: center;
+	margin-left: auto;
+	padding-left: 24px;
+	margin-right: -8px;
+}
+
+.icon {
+	opacity: 0.9;
+	margin-right: 8px;
+}
+
+.message {
+	display: flex;
+	align-items: center;
+}
+
+.dismiss {
+	color: white;
+}

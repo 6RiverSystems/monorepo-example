@@ -1,0 +1,30 @@
+<section [formGroup]="form">
+	<map-core-area-position-editor [form]="form" [position]="feature.getBounds()" [readOnly]="readOnly">
+	</map-core-area-position-editor>
+	<section formGroupName="weights">
+		<mat-form-field>
+			<input matInput type="number" min="0" max="255" step="1" pattern="\d*" formControlName="east" placeholder="east">
+		</mat-form-field>
+		<mat-form-field>
+			<input matInput type="number" min="0" max="255" step="1" pattern="\d*" formControlName="north" placeholder="north">
+		</mat-form-field>
+		<mat-form-field>
+			<input matInput type="number" min="0" max="255" step="1" pattern="\d*" formControlName="northEast" placeholder="northEast">
+		</mat-form-field>
+		<mat-form-field>
+			<input matInput type="number" min="0" max="255" step="1" pattern="\d*" formControlName="northWest" placeholder="northWest">
+		</mat-form-field>
+		<mat-form-field>
+			<input matInput type="number" min="0" max="255" step="1" pattern="\d*" formControlName="south" placeholder="south">
+		</mat-form-field>
+		<mat-form-field>
+			<input matInput type="number" min="0" max="255" step="1" pattern="\d*" formControlName="southEast" placeholder="southEast">
+		</mat-form-field>
+		<mat-form-field>
+			<input matInput type="number" min="0" max="255" step="1" pattern="\d*" formControlName="southWest" placeholder="southWest">
+		</mat-form-field>
+		<mat-form-field>
+			<input matInput type="number" min="0" max="255" step="1" pattern="\d*" formControlName="west" placeholder="west">
+		</mat-form-field>
+	</section>
+</section>

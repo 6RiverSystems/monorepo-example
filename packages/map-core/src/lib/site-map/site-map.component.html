@@ -1,0 +1,21 @@
+<figure
+	class="editor"
+	[ngClass]="{'detail-open': detailOpen}"
+	appLeaflet
+	[leafletOptions]="leafletOptions"
+	appMapStackEditor
+	(leafletMapKeyEvent)="onMapKeyEvent($event)"
+	(leafletMapReady)="onMapReady($event)">
+	</figure>
+
+<div class="loading-container" *ngIf="loadingMessage">
+    <srs-spinner></srs-spinner>
+	{{ loadingMessage }}
+</div>
+
+<input type="file"
+	accept=".png"
+	id="occupancyGridUpload"
+	name="pngUpload"
+	(change)="onOccupancyGridSelect($event)"
+	required>

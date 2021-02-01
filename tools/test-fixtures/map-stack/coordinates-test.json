@@ -1,0 +1,304 @@
+{
+	"languageVersion": "2.0.0",
+	"name": "test",
+	"buildNumber": 10,
+	"resolution": 0.05,
+	"origin": [-10, -10, 0],
+	"metadata": {},
+	"logical": {
+		"type": "FeatureCollection",
+		"features": [
+			{
+				"type": "Feature",
+				"geometry": {
+					"type": "Polygon",
+					"coordinates": [
+						[
+							[-15, -5],
+							[-15, 5],
+							[15, 5],
+							[15, -5],
+							[-15, -5]
+						]
+					]
+				},
+				"properties": {
+					"name": "Cost Area 1",
+					"id": "20698e50-20d7-4660-95e8-aabc6fcb98f2",
+					"type": "costArea",
+					"cost": 0
+				}
+			},
+			{
+				"type": "Feature",
+				"geometry": {
+					"type": "Polygon",
+					"coordinates": [
+						[
+							[-20, -20],
+							[-20, 20],
+							[20, 20],
+							[20, -20],
+							[-20, -20]
+						]
+					]
+				},
+				"properties": {
+					"name": "Border",
+					"id": "f3baa7a6-989b-4abf-a432-1779fbaae688",
+					"type": "impassable"
+				}
+			}
+		]
+	},
+	"workflowPoints": {
+		"type": "FeatureCollection",
+		"features": [
+			{
+				"type": "Feature",
+				"geometry": {
+					"type": "Point",
+					"coordinates": [0, 0]
+				},
+				"properties": {
+					"object": "vertex",
+					"name": "Picking 1",
+					"id": "04fcd25f-229f-4655-b7e3-0664871b6e8c",
+					"orientation": 180,
+					"labels": ["picking", "repick", "zone-IJ"],
+					"workflowOptions": [""]
+				}
+			},
+			{
+				"type": "Feature",
+				"geometry": {
+					"type": "Point",
+					"coordinates": [-5, 5]
+				},
+				"properties": {
+					"object": "vertex",
+					"name": "Induct 1",
+					"id": "270c987c-5e6e-4b83-9298-190be8e0944d",
+					"orientation": 0,
+					"labels": ["induct"],
+					"workflowOptions": ["induct", "restage", "userDirectedInduct"]
+				}
+			},
+			{
+				"type": "Feature",
+				"geometry": {
+					"type": "Point",
+					"coordinates": [0, 10]
+				},
+				"properties": {
+					"object": "vertex",
+					"name": "Packout 1",
+					"id": "2b7ea874-273e-4d8b-8c8b-46b4a979c0f4",
+					"orientation": 270,
+					"labels": ["packout", "takeoff", "dest1", "regular"],
+					"workflowOptions": [""]
+				}
+			},
+			{
+				"type": "Feature",
+				"geometry": {
+					"type": "Point",
+					"coordinates": [-5, -5]
+				},
+				"properties": {
+					"object": "vertex",
+					"name": "Packout 2",
+					"id": "6d602a23-5452-492f-8499-c6e2d991596c",
+					"orientation": 270,
+					"labels": ["packout", "takeoff", "dest2", "exception"],
+					"workflowOptions": [""]
+				}
+			},
+			{
+				"type": "Feature",
+				"geometry": {
+					"type": "Point",
+					"coordinates": [10, 0]
+				},
+				"properties": {
+					"object": "vertex",
+					"name": "Post Charge 1",
+					"id": "72af5c19-1105-43d2-b94c-66a0f226eb85",
+					"orientation": 0,
+					"labels": ["charge", "postCharge", "charge-1"],
+					"workflowOptions": [""]
+				}
+			},
+			{
+				"type": "Feature",
+				"geometry": {
+					"type": "Point",
+					"coordinates": [5, -5]
+				},
+				"properties": {
+					"object": "vertex",
+					"name": "Packout 3",
+					"id": "9910ba6f-27a1-4adb-9bfd-fea700a4ce4d",
+					"orientation": 270,
+					"labels": ["packout", "takeoff", "dest3"],
+					"workflowOptions": [""]
+				}
+			},
+			{
+				"type": "Feature",
+				"geometry": {
+					"type": "Point",
+					"coordinates": [5, 5]
+				},
+				"properties": {
+					"object": "vertex",
+					"name": "Induct 3",
+					"id": "9c87c462-82d4-4916-804f-ce1387c1611e",
+					"orientation": 0,
+					"labels": ["induct"],
+					"workflowOptions": ["induct", "restage", "userDirectedInduct"]
+				}
+			},
+			{
+				"type": "Feature",
+				"geometry": {
+					"type": "Point",
+					"coordinates": [-10, 0]
+				},
+				"properties": {
+					"object": "vertex",
+					"name": "Picking 3",
+					"id": "cf79b590-e245-47e0-9950-75e032ac65bb",
+					"orientation": 180,
+					"labels": ["picking", "repick", "zone-MN"],
+					"workflowOptions": [""]
+				}
+			},
+			{
+				"type": "Feature",
+				"geometry": {
+					"type": "Point",
+					"coordinates": [0, -10]
+				},
+				"properties": {
+					"object": "vertex",
+					"name": "Pre Charge 1",
+					"id": "e0d14b2c-2f95-423d-baec-de9d41f6e583",
+					"orientation": 0,
+					"labels": ["charge", "preCharge", "charge-1"],
+					"workflowOptions": [""]
+				}
+			}
+		]
+	},
+	"aisles": {
+		"type": "FeatureCollection",
+		"features": [
+			{
+				"type": "Feature",
+				"geometry": {
+					"type": "LineString",
+					"coordinates": [
+						[-10, -10],
+						[10, 10]
+					]
+				},
+				"properties": {
+					"object": "aisle",
+					"name": "S-01",
+					"id": "37a7891d-f3aa-435d-b4e9-1eb766ba29a1",
+					"directed": false,
+					"labels": ["zone-MN"]
+				}
+			},
+			{
+				"type": "Feature",
+				"geometry": {
+					"type": "LineString",
+					"coordinates": [
+						[0, 0],
+						[0, 10]
+					]
+				},
+				"properties": {
+					"object": "aisle",
+					"name": "R-03",
+					"id": "397af9eb-b592-4860-afb2-7a087d040fad",
+					"directed": false,
+					"labels": ["zone-IJ"]
+				}
+			},
+			{
+				"type": "Feature",
+				"geometry": {
+					"type": "LineString",
+					"coordinates": [
+						[0, 0],
+						[10, 0]
+					]
+				},
+				"properties": {
+					"object": "aisle",
+					"name": "R-01",
+					"id": "39e173ab-533e-416f-ad4b-c87592936c15",
+					"directed": false,
+					"labels": ["zone-FH"]
+				}
+			},
+			{
+				"type": "Feature",
+				"geometry": {
+					"type": "LineString",
+					"coordinates": [
+						[-10, 10],
+						[10, -10]
+					]
+				},
+				"properties": {
+					"object": "aisle",
+					"name": "R-23",
+					"id": "541db617-da09-4cfe-a980-0c91d4f325b1",
+					"directed": false,
+					"labels": ["zone-CE"]
+				}
+			},
+			{
+				"type": "Feature",
+				"geometry": {
+					"type": "LineString",
+					"coordinates": [
+						[0, 0],
+						[0, -10]
+					]
+				},
+				"properties": {
+					"object": "aisle",
+					"name": "R-02",
+					"id": "c6e368d6-297d-469c-b1e8-372076dbf06b",
+					"directed": false,
+					"labels": ["zone-KL"]
+				}
+			},
+			{
+				"type": "Feature",
+				"geometry": {
+					"type": "LineString",
+					"coordinates": [
+						[0, 0],
+						[-10, 0]
+					]
+				},
+				"properties": {
+					"object": "aisle",
+					"name": "R-04",
+					"id": "f1923d05-3e33-4186-b524-cf3378dcc62c",
+					"directed": false,
+					"labels": ["zone-AB"]
+				}
+			}
+		]
+	},
+	"connectivity": {
+		"matrix": []
+	}
+}

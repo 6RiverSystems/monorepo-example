@@ -1,0 +1,24 @@
+{
+	"name": "@sixriver/map-core",
+	"version": "0.0.0-development",
+	"description": "Library for rendering and editing maps.",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/6RiverSystems/map-core.git"
+	},
+	"contributors": [
+		"Dan Winkler <dan@6river.com>",
+		"Ken Weiss <kweiss@6river.com>",
+		"Adam Vigneaux <avigneaux@6river.com>",
+		"Thomas Varner <tvarner@6river.com>",
+		"Marc Rousseau <mrousseau@6river.com>",
+		"Félix Rodriguez <frodriguez@6river.com>"
+	],
+	"license": "SEE LICENSE IN LICENSE",
+	"peerDependencies": {
+		"@sixriver/map-io": "latest",
+		"@sixriver/map-validator": "latest",
+		"@sixriver/map-controller": "latest",
+		"@sixriver/map-inspector": "latest"
+	}
+}

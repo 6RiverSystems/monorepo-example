@@ -1,0 +1,62 @@
+{
+	"$schema": "http://json-schema.org/schema",
+	"$id": "https://6river.com/schema/mapStack/aisle.json",
+	"title": "aisle",
+	"description": "An aisle is a path that mfps travel on",
+	"type": "object",
+	"additionalProperties": false,
+	"properties": {
+		"type": {
+			"type": "string",
+			"pattern": "Feature"
+		},
+		"geometry": {
+			"type": "object",
+			"additionalProperties": false,
+			"properties": {
+				"type": {
+					"type": "string",
+					"pattern": "LineString"
+				},
+				"coordinates": {
+					"type": "array",
+					"minItems": 2,
+					"maxItems": 2,
+					"items": {
+						"$ref": "./point.json"
+					}
+				}
+			}
+		},
+		"properties": {
+			"type": "object",
+			"additionalProperties": false,
+			"properties": {
+				"name": {
+					"type": "string",
+					"pattern": "^[A-Za-z0-9\\-_:\\(\\)]+(?: +[A-Za-z0-9\\-_:\\(\\)]+)*$",
+					"minLength": 1
+				},
+				"id": {
+					"$ref": "./uuid.json"
+				},
+				"object": {
+					"type": "string",
+					"pattern": "aisle"
+				},
+				"directed": {
+					"type": "boolean"
+				},
+				"labels": {
+					"type": "array",
+					"items": {
+						"type": "string",
+						"pattern": "^$|^[0-9a-zA-Z\\-_]+$"
+					}
+				}
+			},
+			"required": ["name", "object", "id", "directed", "labels"]
+		}
+	},
+	"required": ["type", "geometry", "properties"]
+}

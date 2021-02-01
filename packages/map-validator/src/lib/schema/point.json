@@ -1,0 +1,12 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema#",
+	"$id": "https://6river.com/schema/mapStack/point.json",
+	"title": "point",
+	"description": "Generic x-y-(z) point",
+	"type": "array",
+	"minItems": 2,
+	"maxItems": 3,
+	"items": {
+		"type": "number"
+	}
+}

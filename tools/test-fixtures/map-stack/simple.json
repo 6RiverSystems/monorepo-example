@@ -1,0 +1,89 @@
+{
+	"languageVersion": "2.0.0",
+	"name": "Development",
+	"buildNumber": 10,
+	"resolution": 0.05,
+	"origin": [-10, -10, 0],
+	"metadata": {},
+	"logical": {
+		"type": "FeatureCollection",
+		"features": [
+			{
+				"type": "Feature",
+				"geometry": {
+					"type": "Polygon",
+					"coordinates": [
+						[
+							[16.1, -10],
+							[16.1, -1.95],
+							[18.1, -1.95],
+							[18.1, -10],
+							[16.1, -10]
+						]
+					]
+				},
+				"properties": {
+					"name": "Border",
+					"id": "0c2d0554-a436-4bcc-941d-ca516ccb5638",
+					"type": "impassable"
+				}
+			}
+		]
+	},
+	"workflowPoints": {
+		"type": "FeatureCollection",
+		"features": [
+			{
+				"type": "Feature",
+				"geometry": {
+					"type": "Point",
+					"coordinates": [8.25, 12.975]
+				},
+				"properties": {
+					"object": "vertex",
+					"name": "Picking 1",
+					"id": "04fcd25f-229f-4655-b7e3-0664871b6e8c",
+					"orientation": 180,
+					"labels": ["picking", "repick", "zone-IJ"],
+					"workflowOptions": ["option1", "option2", "option3"]
+				}
+			}
+		]
+	},
+	"aisles": {
+		"type": "FeatureCollection",
+		"features": [
+			{
+				"type": "Feature",
+				"geometry": {
+					"type": "LineString",
+					"coordinates": [
+						[11.225, 5.302],
+						[17.606, 5.302]
+					]
+				},
+				"properties": {
+					"object": "aisle",
+					"name": "S-01",
+					"id": "37a7891d-f3aa-435d-b4e9-1eb766ba29a1",
+					"directed": false,
+					"labels": ["zone-MN"]
+				}
+			}
+		]
+	},
+	"connectivity": {
+		"matrix": [
+			{
+				"start": "S-01_start",
+				"end": "S-01_end",
+				"cost": 6.4
+			},
+			{
+				"start": "S-01_start",
+				"end": "R-03_start",
+				"cost": 15.2456
+			}
+		]
+	}
+}

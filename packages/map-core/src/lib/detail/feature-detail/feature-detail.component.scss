@@ -1,0 +1,22 @@
+@import '../mixins';
+
+.content {
+	padding: 1rem;
+}
+.id {
+	white-space: normal;
+}
+.buttons {
+	display: flex;
+	justify-content: space-between;
+	button {
+		display: inline-block;
+	}
+}
+::ng-deep .mat-form-field-wrapper {
+	padding-bottom: 1em;
+}
+
+@include header-margin-reset();
+@include detail-divider();
+@include detail-toolbar();

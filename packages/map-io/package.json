@@ -1,0 +1,6 @@
+{
+	"name": "@sixriver/map-io",
+	"version": "0.0.0-development",
+	"description": "Library for serializing 6rms maps.",
+	"peerDependencies": {}
+}

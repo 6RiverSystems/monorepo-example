@@ -1,0 +1,20 @@
+<section [formGroup]="form">
+    <h3 class="mat-h2">Position</h3>
+    <section formGroupName="pose">
+        <mat-form-field>
+            <input matInput type="number" formControlName="x" placeholder="X">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput type="number" formControlName="y" placeholder="Y">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput type="number" formControlName="orientation" placeholder="Orientation">
+        </mat-form-field>
+    </section>
+    <h3 class="mat-h2">Workflow Labels</h3>
+    <map-core-chip-editor [form]="form" [chips]="workflowLabels" placeholder="Labels" [list]="feature.labels" key="labels" [readOnly]="readOnly">
+    </map-core-chip-editor>
+    <h3 class="mat-h2">Workflow Options</h3>
+    <map-core-chip-editor [form]="form" [chips]="workflowOptions" placeholder="Options (order matters)" [list]="feature.workflowOptions" key="workflowOptions" [readOnly]="readOnly">
+    </map-core-chip-editor>
+</section>

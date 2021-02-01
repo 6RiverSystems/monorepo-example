@@ -1,0 +1,6 @@
+{
+	"name": "@sixriver/map-controller",
+	"version": "0.0.0-development",
+	"description": "Library for event interaction with maps.",
+	"peerDependencies": {}
+}

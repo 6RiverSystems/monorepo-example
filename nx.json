@@ -1,0 +1,39 @@
+{
+	"npmScope": "sixriver",
+	"implicitDependencies": {
+		"angular.json": "*",
+		"package.json": "*",
+		"tsconfig.json": "*",
+		"nx.json": "*"
+	},
+	"projects": {
+		"map-core-app-e2e": {
+			"tags": [],
+			"implicitDependencies": ["map-core-app"]
+		},
+		"map-core-app": {
+			"tags": []
+		},
+		"map-core": {
+			"tags": []
+		},
+		"map-io": {
+			"tags": []
+		},
+		"map-controller": {
+			"tags": []
+		},
+		"map-element": {
+			"tags": []
+		},
+		"map-validator": {
+			"tags": []
+		},
+		"map-services": {
+			"tags": []
+		},
+		"map-inspector": {
+			"tags": []
+		}
+	}
+}

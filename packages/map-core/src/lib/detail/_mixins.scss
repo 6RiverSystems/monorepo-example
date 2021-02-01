@@ -1,0 +1,31 @@
+@mixin header-margin-reset() {
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		margin-bottom: 1rem;
+	}
+}
+
+@mixin detail-divider() {
+	.divider {
+		// Reset Material styles for the divider
+		position: relative;
+		top: initial;
+		width: initial;
+
+		margin-top: 1rem;
+		margin-bottom: 1rem;
+	}
+}
+
+@mixin detail-toolbar() {
+	.toolbar {
+		justify-content: space-between;
+		.title {
+			margin: 0;
+		}
+	}
+}

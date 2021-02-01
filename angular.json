@@ -1,0 +1,527 @@
+{
+	"version": 1,
+	"projects": {
+		"map-core-app": {
+			"root": "apps/map-core-app",
+			"sourceRoot": "apps/map-core-app/src",
+			"projectType": "application",
+			"schematics": {
+				"@nrwl/angular:component": {
+					"style": "scss"
+				}
+			},
+			"prefix": "sixriver",
+			"architect": {
+				"build": {
+					"builder": "@angular-devkit/build-angular:browser",
+					"options": {
+						"outputPath": "dist/apps/map-core-app",
+						"index": "apps/map-core-app/src/index.html",
+						"main": "apps/map-core-app/src/main.ts",
+						"polyfills": "apps/map-core-app/src/polyfills.ts",
+						"tsConfig": "apps/map-core-app/tsconfig.app.json",
+						"aot": false,
+						"assets": [
+							"apps/map-core-app/src/favicon.ico",
+							"apps/map-core-app/src/assets",
+							{
+								"glob": "styles.min.css",
+								"input": "node_modules/@shopify/polaris",
+								"output": "/"
+							},
+							{
+								"glob": "map.6rms",
+								"input": "tools/test-fixtures/maps",
+								"output": "/"
+							},
+							{
+								"glob": "empty.6rms",
+								"input": "tools/test-fixtures/maps",
+								"output": "/"
+							},
+							{
+								"glob": "xpomem.6rms",
+								"input": "tools/test-fixtures/maps",
+								"output": "/"
+							},
+							{
+								"glob": "selection.6rms",
+								"input": "tools/test-fixtures/maps",
+								"output": "/"
+							}
+						],
+						"styles": [
+							"apps/map-core-app/src/styles.scss",
+							"node_modules/@shopify/polaris/styles.min.css"
+						],
+						"scripts": []
+					},
+					"configurations": {
+						"production": {
+							"fileReplacements": [
+								{
+									"replace": "apps/map-core-app/src/environments/environment.ts",
+									"with": "apps/map-core-app/src/environments/environment.prod.ts"
+								}
+							],
+							"optimization": true,
+							"outputHashing": "all",
+							"sourceMap": {
+								"scripts": true,
+								"styles": true,
+								"vendor": true
+							},
+							"extractCss": true,
+							"namedChunks": false,
+							"aot": true,
+							"extractLicenses": true,
+							"vendorChunk": true,
+							"buildOptimizer": true,
+							"budgets": [
+								{
+									"type": "initial",
+									"maximumWarning": "2mb",
+									"maximumError": "5mb"
+								},
+								{
+									"type": "anyComponentStyle",
+									"maximumWarning": "6kb",
+									"maximumError": "10kb"
+								}
+							]
+						}
+					}
+				},
+				"serve": {
+					"builder": "@angular-devkit/build-angular:dev-server",
+					"options": {
+						"browserTarget": "map-core-app:build",
+						"sourceMap": {
+							"scripts": true,
+							"styles": true,
+							"vendor": true
+						},
+						"port": 4202
+					},
+					"configurations": {
+						"production": {
+							"browserTarget": "map-core-app:build:production"
+						}
+					}
+				},
+				"extract-i18n": {
+					"builder": "@angular-devkit/build-angular:extract-i18n",
+					"options": {
+						"browserTarget": "map-core-app:build"
+					}
+				},
+				"lint": {
+					"builder": "@nrwl/linter:lint",
+					"options": {
+						"linter": "eslint",
+						"config": ".eslintrc.json",
+						"tsConfig": ["apps/map-core-app/tsconfig.app.json"],
+						"exclude": ["**/node_modules/**", "!apps/map-core-app/**"]
+					}
+				}
+			}
+		},
+		"map-core-app-e2e": {
+			"root": "apps/map-core-app-e2e",
+			"sourceRoot": "apps/map-core-app-e2e/src",
+			"projectType": "application",
+			"architect": {
+				"e2e": {
+					"builder": "@nrwl/cypress:cypress",
+					"options": {
+						"cypressConfig": "apps/map-core-app-e2e/cypress.json",
+						"tsConfig": "apps/map-core-app-e2e/tsconfig.e2e.json",
+						"devServerTarget": "map-core-app:serve"
+					},
+					"configurations": {
+						"production": {
+							"devServerTarget": "map-core-app:serve:production"
+						}
+					}
+				},
+				"lint": {
+					"builder": "@nrwl/linter:lint",
+					"options": {
+						"linter": "eslint",
+						"config": ".eslintrc.json",
+						"tsConfig": ["apps/map-core-app-e2e/tsconfig.e2e.json"],
+						"exclude": ["**/node_modules/**", "!apps/map-core-app-e2e/**"]
+					}
+				}
+			}
+		},
+		"map-core": {
+			"projectType": "library",
+			"root": "libs/map-core",
+			"sourceRoot": "libs/map-core/src",
+			"prefix": "sixriver",
+			"architect": {
+				"build": {
+					"builder": "@nrwl/angular:package",
+					"options": {
+						"tsConfig": "libs/map-core/tsconfig.lib.json",
+						"project": "libs/map-core/ng-package.json"
+					},
+					"configurations": {
+						"production": {
+							"tsConfig": "libs/map-core/tsconfig.lib.prod.json"
+						}
+					}
+				},
+				"lint": {
+					"builder": "@nrwl/linter:lint",
+					"options": {
+						"linter": "eslint",
+						"config": ".eslintrc.json",
+						"tsConfig": ["libs/map-core/tsconfig.lib.json"],
+						"exclude": ["**/node_modules/**", "!libs/map-core/**"]
+					}
+				},
+				"test": {
+					"builder": "@angular-devkit/build-angular:karma",
+					"options": {
+						"main": "libs/map-core/test.ts",
+						"tsConfig": "libs/map-core/tsconfig.spec.json",
+						"karmaConfig": "libs/map-core/karma.conf.js",
+						"codeCoverage": true,
+						"codeCoverageExclude": ["**/test.ts"],
+						"progress": false
+					}
+				}
+			},
+			"schematics": {
+				"@nrwl/angular:component": {
+					"styleext": "scss"
+				}
+			}
+		},
+		"map-controller": {
+			"projectType": "library",
+			"root": "libs/map-controller",
+			"sourceRoot": "libs/map-controller/src",
+			"prefix": "sixriver",
+			"architect": {
+				"build": {
+					"builder": "@angular-devkit/build-ng-packagr:build",
+					"options": {
+						"tsConfig": "libs/map-controller/tsconfig.lib.json",
+						"project": "libs/map-controller/ng-package.json"
+					}
+				},
+				"lint": {
+					"builder": "@nrwl/linter:lint",
+					"options": {
+						"linter": "eslint",
+						"config": ".eslintrc.json",
+						"tsConfig": ["libs/map-controller/tsconfig.lib.json"],
+						"exclude": ["**/node_modules/**", "!libs/map-controller/**"]
+					}
+				},
+				"test": {
+					"builder": "@angular-devkit/build-angular:karma",
+					"options": {
+						"main": "libs/map-controller/test.ts",
+						"tsConfig": "libs/map-controller/tsconfig.spec.json",
+						"karmaConfig": "libs/map-controller/karma.conf.js",
+						"codeCoverage": true,
+						"codeCoverageExclude": ["**/test.ts"],
+						"progress": false
+					}
+				}
+			},
+			"schematics": {
+				"@nrwl/angular:component": {
+					"styleext": "scss"
+				}
+			}
+		},
+		"map-io": {
+			"projectType": "library",
+			"root": "libs/map-io",
+			"sourceRoot": "libs/map-io/src",
+			"prefix": "sixriver",
+			"architect": {
+				"build": {
+					"builder": "@nrwl/angular:package",
+					"options": {
+						"tsConfig": "libs/map-io/tsconfig.lib.json",
+						"project": "libs/map-io/ng-package.json"
+					}
+				},
+				"lint": {
+					"builder": "@nrwl/linter:lint",
+					"options": {
+						"linter": "eslint",
+						"config": ".eslintrc.json",
+						"tsConfig": ["libs/map-io/tsconfig.lib.json"],
+						"exclude": ["**/node_modules/**", "!libs/map-io/**"]
+					}
+				},
+				"test": {
+					"builder": "@angular-devkit/build-angular:karma",
+					"options": {
+						"main": "libs/map-io/test.ts",
+						"tsConfig": "libs/map-io/tsconfig.spec.json",
+						"karmaConfig": "libs/map-io/karma.conf.js",
+						"codeCoverage": true,
+						"codeCoverageExclude": ["**/test.ts"],
+						"progress": false
+					}
+				}
+			},
+			"schematics": {
+				"@nrwl/angular:component": {
+					"styleext": "scss"
+				}
+			}
+		},
+		"map-element": {
+			"projectType": "library",
+			"root": "libs/map-element",
+			"sourceRoot": "libs/map-element/src",
+			"prefix": "sixriver",
+			"architect": {
+				"build": {
+					"builder": "@nrwl/angular:package",
+					"options": {
+						"tsConfig": "libs/map-element/tsconfig.lib.json",
+						"project": "libs/map-element/ng-package.json"
+					},
+					"configurations": {
+						"production": {
+							"tsConfig": "libs/map-element/tsconfig.lib.prod.json"
+						}
+					}
+				},
+				"lint": {
+					"builder": "@nrwl/linter:lint",
+					"options": {
+						"linter": "eslint",
+						"config": ".eslintrc-react.json",
+						"tsConfig": ["libs/map-element/tsconfig.lib.json"],
+						"exclude": ["**/node_modules/**", "!libs/map-element/**"]
+					}
+				},
+				"test": {
+					"builder": "@angular-devkit/build-angular:karma",
+					"options": {
+						"main": "libs/map-element/src/test.ts",
+						"tsConfig": "libs/map-element/tsconfig.spec.json",
+						"karmaConfig": "libs/map-element/karma.conf.js",
+						"codeCoverage": true,
+						"codeCoverageExclude": ["**/test.ts"],
+						"progress": false
+					}
+				},
+				"storybook": {
+					"builder": "@nrwl/storybook:storybook",
+					"options": {
+						"uiFramework": "@storybook/react",
+						"port": 7058,
+						"config": {
+							"configFolder": "libs/map-element/.storybook"
+						}
+					}
+				},
+				"build-storybook": {
+					"builder": "@nrwl/storybook:build",
+					"options": {
+						"uiFramework": "@storybook/react",
+						"outputPath": "dist/map-ui-storybook/map-element",
+						"config": {
+							"configFolder": "libs/map-element/.storybook"
+						}
+					},
+					"configurations": {
+						"ci": {
+							"quiet": true
+						}
+					}
+				}
+			}
+		},
+		"map-validator": {
+			"projectType": "library",
+			"root": "libs/map-validator",
+			"sourceRoot": "libs/map-validator/src",
+			"prefix": "sixriver",
+			"architect": {
+				"build": {
+					"builder": "@nrwl/angular:package",
+					"options": {
+						"tsConfig": "libs/map-validator/tsconfig.lib.json",
+						"project": "libs/map-validator/ng-package.json"
+					}
+				},
+				"lint": {
+					"builder": "@nrwl/linter:lint",
+					"options": {
+						"linter": "eslint",
+						"config": ".eslintrc-react.json",
+						"tsConfig": ["libs/map-validator/tsconfig.lib.json"],
+						"exclude": ["**/node_modules/**", "!libs/map-validator/**"]
+					}
+				},
+				"test": {
+					"builder": "@angular-devkit/build-angular:karma",
+					"options": {
+						"main": "libs/map-validator/test.ts",
+						"tsConfig": "libs/map-validator/tsconfig.spec.json",
+						"karmaConfig": "libs/map-validator/karma.conf.js",
+						"codeCoverage": true,
+						"codeCoverageExclude": ["**/test.ts"],
+						"progress": false
+					}
+				}
+			},
+			"schematics": {
+				"@nrwl/angular:component": {
+					"styleext": "scss"
+				}
+			}
+		},
+		"map-services": {
+			"root": "apps/map-services",
+			"sourceRoot": "apps/map-services/src",
+			"projectType": "application",
+			"prefix": "map-services",
+			"schematics": {},
+			"architect": {
+				"build": {
+					"builder": "@nrwl/node:build",
+					"options": {
+						"outputPath": "dist/apps/map-services",
+						"main": "apps/map-services/src/main.ts",
+						"tsConfig": "apps/map-services/tsconfig.app.json",
+						"assets": ["apps/map-services/src/assets"]
+					},
+					"configurations": {
+						"production": {
+							"optimization": true,
+							"extractLicenses": true,
+							"inspect": false,
+							"fileReplacements": [
+								{
+									"replace": "apps/map-services/src/environments/environment.ts",
+									"with": "apps/map-services/src/environments/environment.prod.ts"
+								}
+							]
+						}
+					}
+				},
+				"serve": {
+					"builder": "@nrwl/node:execute",
+					"options": {
+						"buildTarget": "map-services:build"
+					}
+				},
+				"lint": {
+					"builder": "@nrwl/linter:lint",
+					"options": {
+						"linter": "eslint",
+						"config": ".eslintrc.json",
+						"tsConfig": ["apps/map-services/tsconfig.app.json"],
+						"exclude": ["**/node_modules/**", "!apps/map-services/**"]
+					}
+				},
+				"test": {
+					"builder": "@nrwl/jest:jest",
+					"options": {
+						"jestConfig": "apps/map-services/jest.config.js",
+						"tsConfig": "apps/map-services/tsconfig.spec.json",
+						"passWithNoTests": true
+					}
+				}
+			}
+		},
+		"map-inspector": {
+			"root": "libs/map-inspector",
+			"sourceRoot": "libs/map-inspector/src",
+			"projectType": "library",
+			"schematics": {},
+			"architect": {
+				"build": {
+					"builder": "@nrwl/angular:package",
+					"options": {
+						"tsConfig": "libs/map-inspector/tsconfig.lib.json",
+						"project": "libs/map-inspector/ng-package.json"
+					},
+					"configurations": {
+						"production": {
+							"tsConfig": "libs/map-inspector/tsconfig.lib.prod.json"
+						}
+					}
+				},
+				"lint": {
+					"builder": "@nrwl/linter:lint",
+					"options": {
+						"linter": "eslint",
+						"config": ".eslintrc.json",
+						"tsConfig": ["libs/map-inspector/tsconfig.lib.json"],
+						"exclude": ["**/node_modules/**", "!libs/map-inspector/**"]
+					}
+				},
+				"test": {
+					"builder": "@angular-devkit/build-angular:karma",
+					"options": {
+						"main": "libs/map-inspector/src/test.ts",
+						"tsConfig": "libs/map-inspector/tsconfig.spec.json",
+						"karmaConfig": "libs/map-inspector/karma.conf.js",
+						"codeCoverage": true,
+						"codeCoverageExclude": ["**/test.ts"],
+						"progress": false
+					}
+				},
+				"storybook": {
+					"builder": "@nrwl/storybook:storybook",
+					"options": {
+						"uiFramework": "@storybook/react",
+						"port": 7058,
+						"config": {
+							"configFolder": "libs/map-inspector/.storybook"
+						}
+					}
+				},
+				"build-storybook": {
+					"builder": "@nrwl/storybook:build",
+					"options": {
+						"uiFramework": "@storybook/react",
+						"outputPath": "dist/map-ui-storybook/map-inspector",
+						"config": {
+							"configFolder": "libs/map-inspector/.storybook"
+						}
+					},
+					"configurations": {
+						"ci": {
+							"quiet": true
+						}
+					}
+				}
+			}
+		}
+	},
+	"cli": {
+		"defaultCollection": "@nrwl/angular",
+		"analytics": false
+	},
+	"schematics": {
+		"@nrwl/angular:application": {
+			"unitTestRunner": "none",
+			"e2eTestRunner": "cypress"
+		},
+		"@nrwl/angular:library": {
+			"unitTestRunner": "none"
+		},
+		"@nrwl/react": {
+			"application": {
+				"babel": true
+			}
+		}
+	},
+	"defaultProject": "map-core-app"
+}

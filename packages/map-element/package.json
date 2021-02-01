@@ -1,0 +1,9 @@
+{
+	"name": "@sixriver/map-element",
+	"version": "0.0.0-development",
+	"description": "Library for rendering a 6rms map",
+	"peerDependencies": {
+		"@sixriver/map-io": "latest",
+		"@sixriver/map-controller": "latest"
+	}
+}

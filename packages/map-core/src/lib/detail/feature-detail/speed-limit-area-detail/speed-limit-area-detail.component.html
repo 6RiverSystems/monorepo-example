@@ -1,0 +1,7 @@
+<section [formGroup]="form">
+	<map-core-area-position-editor [form]="form" [position]="feature.getBounds()" [readOnly]="readOnly">
+	</map-core-area-position-editor>
+	<mat-form-field>
+		<input matInput type="number" step="0.1" formControlName="maxVelocity" placeholder="Max Velocity">
+	</mat-form-field>
+</section>

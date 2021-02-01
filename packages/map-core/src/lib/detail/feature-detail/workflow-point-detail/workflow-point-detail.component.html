@@ -1,0 +1,10 @@
+<workflow-point-editor
+    *ngIf="isWorkflowPointEditorEnabled"
+    [feature]="feature"
+    [form]="form"
+    [readOnly]="readOnly">
+</workflow-point-editor>
+<workflow-point-configurator
+    *ngIf="isWorkflowPointConfiguratorEnabled"
+    [feature]="feature">
+</workflow-point-configurator>

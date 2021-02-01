@@ -1,0 +1,47 @@
+{
+	"extends": [
+		"6river/typescript",
+		"plugin:import/typescript",
+		"prettier",
+		"prettier/@typescript-eslint"
+	],
+	"plugins": ["@typescript-eslint", "@nrwl/nx", "import"],
+	"rules": {
+		"no-console": "off",
+		"max-len": [
+			"error",
+			{
+				"code": 120,
+				"ignoreTemplateLiterals": true
+			}
+		],
+		"@nrwl/nx/enforce-module-boundaries": [
+			"error",
+			{
+				"allow": ["^.*/tools/.*"],
+				"depConstraints": [
+					{
+						"sourceTag": "*",
+						"onlyDependOnLibsWithTags": ["*"]
+					}
+				]
+			}
+		],
+		"import/no-dynamic-require": "error",
+		"import/no-webpack-loader-syntax": "error",
+		"import/order": [
+			"error",
+			{
+				"groups": [
+					["builtin", "external"],
+					["internal", "parent", "sibling", "index"]
+				],
+				"newlines-between": "always"
+			}
+		],
+		"@typescript-eslint/no-non-null-assertion": "error",
+		"@typescript-eslint/member-delimiter-style": "error",
+		"no-invalid-this": "off",
+		"@typescript-eslint/no-unused-vars": "off"
+	}
+}

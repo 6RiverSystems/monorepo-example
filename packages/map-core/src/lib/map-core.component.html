@@ -1,0 +1,8 @@
+<mat-drawer-container autosize [hasBackdrop]='false'>
+	<mat-drawer class="site-map-detail" [position]="'end'" [mode]="'side'">
+		<site-map-detail></site-map-detail>
+	</mat-drawer>
+	<mat-drawer-content class="site-map-content">
+		<site-map (mapEvent)="mapEvent.emit($event)"></site-map>
+	</mat-drawer-content>
+</mat-drawer-container>

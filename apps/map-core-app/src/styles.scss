@@ -1,0 +1,22 @@
+@import '~@sixriver/styles/dist/six-river-theme-material.css';
+@import '../../../libs/map-core/src/lib/styles.scss';
+@import '@shopify/polaris/styles.css';
+
+* {
+	box-sizing: border-box;
+}
+
+html,
+body {
+	height: 100%;
+	width: 100%;
+}
+
+body {
+	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	margin: 0;
+}
+
+img {
+	overflow: hidden;
+}

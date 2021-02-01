@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+readonly to_replace='<!-- replace -->'
+readonly storybook_output_path="${1:-}"
+
+if [ -z "$storybook_output_path" ]; then
+	echo 'error: must provide path to Storybook output directory'
+	exit 1
+fi
+
+if ! [ -f "$storybook_output_path"/index.html ]; then
+	echo 'error: Storybook output directory must contain index.html'
+	exit 1
+fi
+
+links=''
+
+echo "searching '$storybook_output_path' for compiled Storybook instances..."
+for project_path in "$storybook_output_path"/*/; do
+	project="$(basename "$project_path")"
+
+	echo "generating link for '$project'..."
+	links+="<li><a href="${project}/">${project}</a></li>"
+done
+
+echo "inserting links in '$storybook_output_path/index.html'..."
+sed -i "s|$to_replace|$links|" "$storybook_output_path"/index.html
+

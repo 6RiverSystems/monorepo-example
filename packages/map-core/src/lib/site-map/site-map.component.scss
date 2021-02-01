@@ -1,0 +1,43 @@
+@import '../_vars';
+@import '~@angular/material/theming';
+
+.editor {
+	margin: 0;
+	overflow: hidden;
+	height: 100%;
+	width: 100%;
+	background: #ffffff;
+	// This constant is based on the angular material animation constant, this time is tied to site-map.component.ts
+	transition: width $swift-ease-out-duration $swift-ease-out-timing-function;
+}
+
+.detail-open {
+	width: calc(100% - #{$sidenav-width-break-medium});
+}
+
+@media (min-width: $small-2) {
+	.detail-open {
+		width: calc(100% - #{$sidenav-width});
+	}
+}
+
+.loading-container {
+	z-index: 9999;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+	transform: translate(-50%, -50%);
+	height: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+	justify-content: space-evenly;
+	color: #2286b1;
+	text-transform: uppercase;
+	font-weight: bold;
+	font-size: 14px;
+}
+
+#occupancyGridUpload {
+	display: none;
+}

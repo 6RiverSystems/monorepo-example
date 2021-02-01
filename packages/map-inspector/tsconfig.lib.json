@@ -1,0 +1,12 @@
+{
+	"extends": "./tsconfig.json",
+	"compilerOptions": {
+		"outDir": "../../dist/out-tsc",
+		"declaration": true,
+		"inlineSources": true,
+		"types": [],
+		"lib": ["dom", "esnext"]
+	},
+	"exclude": ["**/*.spec.ts", "**/*.spec.tsx", "**/*.stories.ts", "**/*.stories.js"],
+	"include": ["**/*.js", "**/*.jsx", "**/*.ts", "**/*.tsx"]
+}

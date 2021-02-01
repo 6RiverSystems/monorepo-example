@@ -1,0 +1,123 @@
+{
+	"$schema": "http://json-schema.org/schema",
+	"$id": "https://6river.com/schema/mapStack/feature.json",
+	"title": "feature",
+	"description": "Any polygon that represents a special area on the MapStack",
+	"type": "object",
+	"additionalProperties": false,
+	"properties": {
+		"type": {
+			"type": "string",
+			"pattern": "Feature"
+		},
+		"geometry": {
+			"type": "object",
+			"additionalProperties": false,
+			"properties": {
+				"type": {
+					"type": "string",
+					"pattern": "Polygon"
+				},
+				"coordinates": {
+					"type": "array",
+					"minItems": 1,
+					"maxItems": 1,
+					"items": {
+						"type": "array",
+						"minItems": 5,
+						"maxItems": 5,
+						"items": {
+							"$ref": "./point.json"
+						}
+					}
+				}
+			}
+		},
+		"properties": {
+			"type": "object",
+			"additionalProperties": false,
+			"properties": {
+				"name": {
+					"type": "string"
+				},
+				"id": {
+					"$ref": "./uuid.json"
+				},
+				"type": {
+					"type": "string",
+					"enum": [
+						"keepOut",
+						"weightedArea",
+						"stayOnPath",
+						"costArea",
+						"impassable",
+						"queue",
+						"playSoundArea",
+						"speedLimit"
+					]
+				},
+				"maxVelocity": {
+					"type": "number",
+					"minimum": 0,
+					"maximum": 1
+				},
+				"n": {
+					"type": "number",
+					"minimum": 0,
+					"maximum": 255
+				},
+				"ne": {
+					"type": "number",
+					"minimum": 0,
+					"maximum": 255
+				},
+				"e": {
+					"type": "number",
+					"minimum": 0,
+					"maximum": 255
+				},
+				"se": {
+					"type": "number",
+					"minimum": 0,
+					"maximum": 255
+				},
+				"s": {
+					"type": "number",
+					"minimum": 0,
+					"maximum": 255
+				},
+				"sw": {
+					"type": "number",
+					"minimum": 0,
+					"maximum": 255
+				},
+				"w": {
+					"type": "number",
+					"minimum": 0,
+					"maximum": 255
+				},
+				"nw": {
+					"type": "number",
+					"minimum": 0,
+					"maximum": 255
+				},
+				"cost": {
+					"type": "number"
+				},
+				"queueName": {
+					"type": "string"
+				}
+			},
+			"required": [
+				"name",
+				"type",
+				"id"
+			]
+		}
+	},
+	"required": [
+		"type",
+		"geometry",
+		"properties"
+	]
+}

@@ -1,0 +1,8 @@
+{
+	"name": "@sixriver/map-validator",
+	"version": "0.0.0-development",
+	"description": "Library for validating 6rms maps.",
+	"peerDependencies": {
+		"@sixriver/map-io": "latest"
+	}
+}

@@ -1,0 +1,15 @@
+@import '../mixins';
+
+mat-icon {
+	vertical-align: text-top;
+}
+.content {
+	padding: 1rem;
+}
+.jobs {
+	overflow-y: auto;
+	max-height: 100%;
+}
+@include header-margin-reset();
+@include detail-divider();
+@include detail-toolbar();

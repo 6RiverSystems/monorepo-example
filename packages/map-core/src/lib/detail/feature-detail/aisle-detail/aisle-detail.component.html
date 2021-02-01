@@ -1,0 +1,23 @@
+<section [formGroup]="form">
+	<section formArrayName="position" *ngIf="position">
+		<h2 class="mat-h2">Position</h2>
+		<div *ngFor="let item of position.controls; let i = index" [formGroupName]="i">
+			<mat-form-field>
+				<input matInput formControlName="lng" placeholder="X">
+			</mat-form-field>
+			<mat-form-field>
+				<input matInput formControlName="lat" placeholder="Y">
+			</mat-form-field>
+		</div>
+	</section>
+	<section class="toggle-container">
+		<mat-slide-toggle formControlName="directed"></mat-slide-toggle>
+		<label>
+			Directed
+			<p class="mat-caption">MFPs can only travel one way in directed aisles.</p>
+		</label>
+	</section>
+	<h2 class="mat-h2">Labels</h2>
+	<map-core-chip-editor [form]="form" [list]="feature.labels" placeholder="Labels" key="labels" [readOnly]="readOnly">
+	</map-core-chip-editor>
+</section>

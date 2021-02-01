@@ -1,0 +1,32 @@
+@import '~@sixriver/styles/six-river-brand.scss';
+@import './_vars';
+
+:host {
+	display: flex;
+	flex-direction: column;
+}
+
+mat-drawer-container {
+	flex: 1 1 auto;
+}
+
+mat-drawer-content {
+	display: block;
+	position: absolute;
+	height: 100%;
+	width: 100%;
+}
+
+mat-drawer {
+	width: $sidenav-width-break-medium;
+}
+
+@media (min-width: $small-2) {
+	mat-drawer {
+		width: $sidenav-width;
+	}
+}
+
+.site-map-detail{
+	border-left: 1px solid mat-color($six-river-palette-silver, 500);
+}

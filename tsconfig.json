@@ -1,0 +1,34 @@
+{
+	"compileOnSave": false,
+	"compilerOptions": {
+		"rootDir": ".",
+		"sourceMap": true,
+		"declaration": false,
+		"moduleResolution": "node",
+		"emitDecoratorMetadata": true,
+		"experimentalDecorators": true,
+		"resolveJsonModule": true,
+		"esModuleInterop": true,
+		"allowSyntheticDefaultImports": true,
+		"importHelpers": true,
+		"target": "esnext",
+		"module": "esnext",
+		"typeRoots": ["node_modules/@types"],
+		"lib": ["es2017", "dom"],
+		"skipLibCheck": true,
+		"skipDefaultLibCheck": true,
+		"baseUrl": ".",
+		"paths": {
+			"@sixriver/map-core": ["dist/libs/map-core", "libs/map-core/src/index.ts"],
+			"@sixriver/map-io": ["dist/libs/map-io", "libs/map-io/src/index.ts"],
+			"@sixriver/map-controller": ["dist/libs/map-controller", "libs/map-controller/src/index.ts"],
+			"@sixriver/map-element": ["dist/libs/map-element", "libs/map-element/src/index.ts"],
+			"@sixriver/map-validator": ["dist/libs/map-validator", "libs/map-validator/src/index.ts"],
+			"@sixriver/map-inspector": ["dist/libs/map-inspector", "libs/map-inspector/src/index.ts"]
+		}
+	},
+	"angularCompilerOptions": {
+		"enableIvy": false
+	},
+	"exclude": ["node_modules", "tmp"]
+}

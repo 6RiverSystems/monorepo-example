@@ -1,0 +1,51 @@
+<mat-toolbar class="toolbar">
+	<h4 class="title mat-headline">{{ feature.name }}</h4>
+	<button mat-icon-button aria-label="close">
+		<mat-icon (click)="closeDetails.emit()">close</mat-icon>
+	</button>
+</mat-toolbar>
+<section class="content">
+	<section class="header">
+		<h5 class="mat-title">{{ feature.type }}</h5>
+		<pre class="id">{{ feature.id }}</pre>
+	</section>
+	<mat-divider class="divider"></mat-divider>
+	<form [formGroup]="form" (ngSubmit)="onSubmit()">
+		<section>
+			<mat-form-field>
+				<input matInput formControlName="name" placeholder="Name">
+			</mat-form-field>
+		</section>
+		<section [ngSwitch]="type">
+			<aisle-detail *ngSwitchCase="'aisle'" [feature]="feature" [form]="form" [readOnly]="readOnly">
+			</aisle-detail>
+			<cost-area-detail *ngSwitchCase="'costArea'" [feature]="feature" [form]="form" [readOnly]="readOnly">
+			</cost-area-detail>
+			<impassable-area-detail *ngSwitchCase="'impassable'" [feature]="feature" [form]="form"
+				[readOnly]="readOnly"></impassable-area-detail>
+			<simulated-object-detail *ngSwitchCase="'simulatedObject'" [feature]="feature" [form]="form"
+				[readOnly]="readOnly"></simulated-object-detail>
+			<keep-out-area-detail *ngSwitchCase="'keepOut'" [feature]="feature" [form]="form" [readOnly]="readOnly">
+			</keep-out-area-detail>
+			<queue-area-detail *ngSwitchCase="'queue'" [feature]="feature" [form]="form" [readOnly]="readOnly">
+			</queue-area-detail>
+			<stay-on-path-area-detail *ngSwitchCase="'stayOnPath'" [feature]="feature" [form]="form"
+				[readOnly]="readOnly"></stay-on-path-area-detail>
+			<speed-limit-area-detail *ngSwitchCase="'speedLimit'" [feature]="feature" [form]="form"
+				[readOnly]="readOnly"></speed-limit-area-detail>
+			<weighted-area-detail *ngSwitchCase="'weightedArea'" [feature]="feature" [form]="form"
+				[readOnly]="readOnly"></weighted-area-detail>
+			<workflow-point-detail *ngSwitchCase="'workflowPoint'" [feature]="feature" [form]="form"
+				[readOnly]="readOnly"></workflow-point-detail>
+			<ng-container *ngSwitchDefault>
+				<h2 class="mat-h2">Editing this type of feature is not currently supported.</h2>
+			</ng-container>
+		</section>
+		<section class="buttons" *ngIf="!readOnly">
+			<button [disabled]="form.invalid" mat-raised-button type="submit" color="primary">
+				Submit
+			</button>
+			<button mat-button type="button" (click)="onRemove()" color="warn">Remove</button>
+		</section>
+	</form>
+</section>

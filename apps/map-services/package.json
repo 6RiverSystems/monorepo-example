@@ -1,0 +1,6 @@
+{
+	"name": "@sixriver/map-services",
+	"version": "0.0.0-development",
+	"description": "Server for map core",
+	"peerDependencies": {}
+}

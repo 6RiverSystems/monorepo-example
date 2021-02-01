@@ -1,0 +1,325 @@
+@import '~leaflet/dist/leaflet.css';
+@import './svg-url.scss';
+@import './svgs.scss';
+
+/**
+ * Global styles that will not be scoped to components. Only add styles to this file that will not work if added to
+ * a component's .scss file.
+ */
+
+.leaflet-control-container .material-icons {
+	line-height: 30px;
+}
+
+.leaflet-container img.leaflet-image-layer {
+	max-width: none !important;
+}
+
+.leaflet-image-layer {
+	image-rendering: pixelated;
+}
+
+.leaflet-control-palette {
+	& > .edit-control.active {
+		background-color: rgb(2, 49, 179);
+		color: rgb(255, 255, 255);
+	}
+}
+
+/*
+.leaflet-marker-icon {
+	max-width: 10px;
+	max-height: 10px;
+	margin-left: -5px !important;
+	margin-top: -5px !important;
+	border-radius: 50%;
+	z-index: 2000;
+	// Do not display blue outline when focused
+	outline: 0 !important;
+}
+*/
+
+.leaflet-vertex-icon {
+	max-width: 10px;
+	max-height: 10px;
+	margin-left: -5px !important;
+	margin-top: -5px !important;
+	border-radius: 50%;
+}
+
+.leaflet-middle-icon {
+	max-width: 10px;
+	max-height: 10px;
+	margin-left: -5px !important;
+	margin-top: -5px !important;
+	border-radius: 50%;
+}
+
+.stack-aisle {
+	stroke: rgb(51, 136, 255);
+}
+
+#stack-aisle-arrow {
+	fill: rgb(51, 136, 255);
+	stroke: rgb(51, 136, 255);
+	stroke-width: 0px;
+}
+
+$layerOpacity: 0.7;
+$layerStroke: rgb(255, 255, 255);
+
+@mixin base-layer($fillColor) {
+	stroke: $layerStroke;
+	fill-opacity: $layerOpacity;
+	fill: saturate($fillColor, 30%);
+}
+
+.stack-impassable {
+	stroke: transparent;
+	stroke-width: 0;
+	fill: rgb(170, 170, 170);
+	fill-opacity: 0.7;
+}
+
+.stack-simulated-object {
+	stroke: transparent;
+	stroke-width: 0;
+	fill: rgb(15, 15, 15);
+	fill-opacity: 0.7;
+}
+
+.stack-cost {
+	@include base-layer(rgb(255, 188, 190));
+}
+
+.stack-keepout {
+	@include base-layer(rgb(252, 237, 75));
+}
+
+.stack-queue {
+	@include base-layer(rgb(52, 48, 116));
+}
+
+.stack-speedlimit {
+	@include base-layer(rgb(40, 116, 196));
+}
+
+.stack-stayonpath {
+	@include base-layer(rgb(188, 48, 108));
+}
+
+.stack-weighted {
+	@include base-layer(rgb(240, 240, 0));
+}
+
+.stack-weighted-north {
+	@include base-layer(rgb(240, 190, 72));
+}
+
+.stack-weighted-south {
+	@include base-layer(rgb(95, 240, 72));
+}
+
+.stack-weighted-east {
+	@include base-layer(rgb(185, 0, 255));
+}
+
+.stack-weighted-west {
+	@include base-layer(rgb(72, 74, 240));
+}
+
+@mixin notification() {
+	color: #fff;
+	display: flex;
+	padding: 6px 24px;
+	flex-wrap: wrap;
+	align-items: center;
+	font-size: 0.875rem;
+	font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+	font-weight: 400;
+	line-height: 1.5;
+	letter-spacing: 0.01071em;
+
+	box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2), 0px 6px 10px 0px rgba(0, 0, 0, 0.14),
+		0px 1px 18px 0px rgba(0, 0, 0, 0.12);
+}
+
+.notification-warning {
+	@include notification();
+	background-color: #ffa000;
+	color: #fff;
+	display: flex;
+}
+
+.notification-error {
+	@include notification();
+	background-color: #d32f2f;
+	color: #fff;
+	display: flex;
+}
+
+.notification-info {
+	@include notification();
+	background-color: #1976d2;
+	color: #fff;
+	display: flex;
+}
+
+.notification-success {
+	@include notification();
+	background-color: #43a047;
+	color: #fff;
+	display: flex;
+}
+.stack-workflow-point {
+	background-image: svg-url($workflow-point-svg);
+	background-repeat: no-repeat;
+	background-size: 100%;
+	border-radius: 50%;
+	background-color: white;
+	box-sizing: border-box;
+
+	&.disabled {
+		opacity: 0.35;
+	}
+
+	&.error {
+		opacity: 1;
+		border-color: rgb(244, 66, 96);
+		border: solid 2px #f44260;
+		background-color: #f44260c7;
+	}
+
+	&.selected {
+		border-color: rgb(66, 170, 244);
+		border: solid 2px #42aaf4;
+		background-color: #42aaf4c7;
+	}
+}
+
+$color-faults: #e5454c;
+
+.mfp-label {
+	outline: 0 !important;
+
+	.caption {
+		background: #0678be;
+		color: #fff;
+		border: 2px white solid;
+		padding: 1px 5px;
+		border-radius: 5px;
+		display: inline-block;
+		margin: 0;
+		white-space: nowrap;
+		position: absolute;
+		text-transform: capitalize;
+		left: 50%;
+	}
+
+	.badge {
+		background-repeat: no-repeat;
+		background-size: 100% 100%;
+		box-sizing: border-box;
+		position: absolute;
+		background-color: white;
+		border-radius: 50%;
+		&.faults {
+			background-image: svg-url($fault-svg);
+		}
+
+		&.dwell {
+			background-image: svg-url($dwell-svg);
+		}
+	}
+}
+
+.mfp-display {
+	outline: 0 !important;
+
+	.mfp-icon-root {
+		width: 100%;
+		height: 100%;
+	}
+
+	.mfp-icon-svg {
+		position: absolute;
+		background-repeat: no-repeat;
+		background-size: 100% 100%;
+		box-sizing: border-box;
+	}
+
+	.highlighter {
+		border-radius: 50%;
+		position: absolute;
+		border-color: transparent;
+		border-style: solid;
+		box-sizing: border-box;
+	}
+
+	&.selected {
+		z-index: 999;
+
+		.highlighter {
+			display: block;
+			background-color: #42aaf4c7;
+		}
+	}
+
+	&.paused svg > * .mfp-fill {
+		fill: #faa33f;
+	}
+
+	&.charging svg > * .mfp-fill {
+		fill: #70b026;
+	}
+
+	// color state class appears in zoom levels that are smaller than zoomBadgeThreshold=4
+	&.color-state {
+		&.faults svg > * .mfp-fill {
+			fill: $color-faults; // red
+		}
+		&.docking svg > * .mfp-fill {
+			fill: #888888;
+			stroke: black;
+		}
+		&.idle svg > * .mfp-fill {
+			fill: #888888;
+			stroke: black;
+		}
+		&.traveling svg > * .mfp-fill {
+			fill: #888888;
+			stroke: black;
+		}
+	}
+}
+
+svg path.selected,
+.leaflet-pane > svg.selected path {
+	fill-opacity: 1;
+	stroke-width: 3;
+	stroke: rgb(66, 170, 244);
+	z-index: 999;
+}
+
+svg path.error,
+.leaflet-pane > svg.error path {
+	fill-opacity: 1;
+	stroke-width: 5;
+	stroke: rgb(196, 12, 43);
+	z-index: 999;
+	fill: #f44260;
+}
+
+@keyframes active {
+	0% {
+		transform: scale(0.1);
+		opacity: 1;
+	}
+	70% {
+		transform: scale(2.5);
+		opacity: 0;
+	}
+	100% {
+		opacity: 0;
+	}
+}

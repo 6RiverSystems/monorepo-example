@@ -1,0 +1,20 @@
+<ng-container *ngIf="(jobBatches$ | async) as jobBatches">
+	<ng-container *ngFor="let batch of jobBatches; index as i">
+		<!-- Only display the batch if it has at least one job in it -->
+		<section *ngIf="batch.length > 0">
+			<h3 class="mat-h3" *ngIf="jobBatches.length > 1">Batch {{ i + 1 }}</h3>
+			<!-- TODO re-enable when task progress is updated intermittently while picking (currently never updated) -->
+			<!-- <section>
+				<h2 class="mat-title">Progress</h2>
+				<mat-progress-bar class="batch-progress" mode="determinate" [value]="getJobProgress(batch)"></mat-progress-bar>
+			</section> -->
+			<h2 class="mat-title">Jobs</h2>
+			<map-core-job *ngFor="let job of batch; index as i"
+				[job]="job"
+				[index]="i"
+				[expanded]="jobExpanded[i]"
+				(toggled)="onToggled($event, i)">
+			</map-core-job>
+		</section>
+	</ng-container>
+</ng-container>

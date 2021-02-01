@@ -1,0 +1,27 @@
+{
+  "languageVersion": "2.0.0",
+  "name": "Development",
+  "buildNumber": 10,
+  "resolution": 0.05,
+  "origin": [
+    -10,
+    -10,
+    0
+  ],
+  "metadata": {},
+  "logical": {
+    "type": "FeatureCollection",
+    "features": []
+  },
+  "workflowPoints": {
+    "type": "FeatureCollection",
+    "features": []
+  },
+  "aisles": {
+    "type": "FeatureCollection",
+    "features": []
+  },
+  "connectivity": {
+    "matrix": []
+  }
+}

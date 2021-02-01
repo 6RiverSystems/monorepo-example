@@ -1,0 +1,108 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema#",
+	"$id": "https://6river.com/schema/mapStack/mapStack.json",
+	"title": "MapStack",
+	"description": "MapStack site map",
+	"type": "object",
+	"additionalProperties": false,
+	"properties": {
+		"$schema": {
+			"type": "string"
+		},
+		"languageVersion": {
+			"type": "string"
+		},
+		"buildNumber": {
+			"type": "integer"
+		},
+		"name": {
+			"type": "string",
+			"minLength": 2,
+			"pattern": "^[0-9a-zA-Z\\-_]+$"
+		},
+		"resolution": {
+			"type": "number",
+			"minimum": 0.01,
+			"maximum": 1
+		},
+		"origin": {
+			"$ref": "./point.json"
+		},
+		"metadata": {
+			"type": "object"
+		},
+		"logical": {
+			"type": "object",
+			"additionalProperties": false,
+			"properties": {
+				"type": {
+					"type": "string",
+					"pattern": "FeatureCollection"
+				},
+				"features": {
+					"type": "array",
+					"items": {
+						"$ref": "./feature.json"
+					}
+				}
+			}
+		},
+		"workflowPoints": {
+			"type": "object",
+			"additionalProperties": false,
+			"properties": {
+				"type": {
+					"type": "string",
+					"pattern": "FeatureCollection"
+				},
+				"features": {
+					"type": "array",
+					"items": {
+						"$ref": "./workflowPoint.json"
+					}
+				}
+			}
+		},
+		"aisles": {
+			"type": "object",
+			"additionalProperties": false,
+			"properties": {
+				"type": {
+					"type": "string",
+					"pattern": "FeatureCollection"
+				},
+				"features": {
+					"type": "array",
+					"items": {
+						"$ref": "./aisle.json"
+					}
+				}
+			}
+		},
+		"connectivity": {
+			"type": "object",
+			"additionalProperties": false,
+			"properties": {
+				"matrix": {
+					"type": "array",
+					"items": {
+						"$ref": "./cell.json"
+					}
+				}
+			},
+			"required": ["matrix"]
+		}
+	},
+	"required": [
+		"languageVersion",
+		"buildNumber",
+		"name",
+		"resolution",
+		"origin",
+		"metadata",
+		"logical",
+		"aisles",
+		"workflowPoints",
+		"connectivity"
+	]
+}

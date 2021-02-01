@@ -1,0 +1,19 @@
+<ng-container *ngIf="nextMode; else legacy">
+	<map-inspector [features]="features"></map-inspector>
+</ng-container>
+<ng-template #legacy>
+	<section class="content" *ngIf="layer">
+		<mfp-display-detail
+			*ngIf="isMfp"
+			[layer]="layer"
+			(closeDetails)="onClose()"
+		></mfp-display-detail>
+		<map-core-feature-detail
+			*ngIf="!isMfp"
+			[feature]="layer"
+			[readOnly]="readOnly"
+			(closeDetails)="onClose()"
+		>
+		</map-core-feature-detail>
+	</section>
+</ng-template>
